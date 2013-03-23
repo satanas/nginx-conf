@@ -1,0 +1,41 @@
+server {
+    # Change server_name and port according to your configuration
+    listen       80;
+    server_name  your.domain.com;
+
+    # Change this path to your app path
+    root   /srv/www/your_app_folder;
+
+    index  index.php index.html index.htm;
+    fastcgi_index   index.php;
+
+    include /usr/local/nginx/conf/global-restrictions.conf;
+
+    location / {
+        try_files $uri $uri/ /index.php?args;
+    }
+
+    location ~ ^/files/(.*)$ {
+        autoindex on;
+        autoindex_exact_size off;
+    }
+
+    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    #
+    location ~ \.php$ {
+        # Change this path to your app path
+        root /srv/www/your_app_folder;
+
+        # Workaround PHP vulnerability:
+        # http://forum.nginx.org/read.php?2,88845,page=3
+        try_files $uri =404;
+
+        #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+
+        include        /usr/local/nginx/conf/fastcgi_params;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    }
+
+}
