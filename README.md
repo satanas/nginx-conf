@@ -29,14 +29,16 @@ $ make
 # make install
 ```
 
-5.- Copy nginx init-script file (included in this repo) to /etc/init.d and update rc.d
+5.- Fetch nginx init-script file, copy into /etc/init.d and update rc.d
 
 ```bash
+# wget https://github.com/satanas/nginx-conf/raw/master/nginx
 # mv nginx /etc/init.d/
+# chmod +x /etc/init.d/nginx
 # insserv nginx
 ```
 
-6.- Edit the nginx config file
+6.- Edit the nginx config file at your pleasure
 
 7.- Enjoy!
 
@@ -49,6 +51,14 @@ Optional: Install PHP 5
 # aptitude install php5-cgi php5-mysql php5-curl php5-gd php5-idn php-pear php5-imagick php5-imap php5-json php5-mcrypt php5-memcache php5-mhash php5-ming php5-ps php5-pspell php5-recode php5-snmp php5-sqlite php5-tidy php5-xmlrpc php5-xsl
 ```
 
+2.- Fetch php-fastcgi init-script file, copy into /etc/init.d and update rc.d
+
+```bash
+# wget https://github.com/satanas/nginx-conf/raw/master/php-fastcgi
+# mv php-fastcgi /etc/init.d/
+# chmod +x /etc/init.d/php-fastcgi
+# insserv php-fastcgi
+```
 
 
 
