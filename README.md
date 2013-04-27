@@ -28,6 +28,10 @@ This repo holds all the files and instructions needed to install nginx in a Debi
  $ make
  # make install
 ```
+To enable debug just configure with *--with-debug* flag:
+```bash
+ $ ./configure --pid-path=/var/run/nginx.pid --sbin-path=/usr/local/sbin --with-http_ssl_module
+```
 
 5.- Fetch nginx init-script file, copy into /etc/init.d and update rc.d
 
